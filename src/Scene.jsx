@@ -50,7 +50,9 @@ import gsap from "gsap";
 
 
 export const Scene = () => {
-
+	
+	
+	
   const ref = useRef();
   const tl = useRef();
 

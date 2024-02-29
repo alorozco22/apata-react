@@ -1,24 +1,28 @@
 import { Logo1 } from "./logo1";
+import { useProgress } from "@react-three/drei";
 
-export function LoadingScreen(){
+import { TextureLoader } from 'three/src/loaders/TextureLoader';
+import { useLoader } from '@react-three/fiber';
+import { BackgroundApata } from './ApataHorizontal';
+
+import { LogoBlanco } from "./logo-blanco";
+import { StartSound } from "./StartSound";
+import { StartNoSound } from "./StartNoSound";
+
+export function LoadingScreen({started, onStarted, onStartedNoSound}){
     //https://www.youtube.com/watch?v=L12wIvuZTOY
-	return (
-		<div class="loader-wrapper">
-        <div class="row">
-            <div class="col-12">
-                
-                <div class="js-figure stars__item">
-                    <Logo1 />
-                </div>
-                
+    const { progress } = useProgress();
+    
 
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <p style={{}}>¿Cuándo fue la última vez que hiciste algo por primera vez?</p>
-            </div>
-        </div>
-    </div>
+	return (
+		<>
+            
+            <ambientLight intensity={3} />
+            <LogoBlanco position={[-4.8,11,0]} clickEvent={()=> onStarted()} /> 
+            <StartSound clickEvent={()=> onStarted()} /> 
+            <StartNoSound clickEvent={()=> onStartedNoSound()} />
+            <BackgroundApata position={[-10,10,-10]} scale={[30,30,30]} /> 
+            
+        </>
 		);
 }
